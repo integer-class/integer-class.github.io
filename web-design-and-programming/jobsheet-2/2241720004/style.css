@@ -21,11 +21,11 @@ html,body{
 .titel h2{
     font-size: 165px;
     position: relative;
-    top: 0;
+    top: 50%;
     left: 0;
     right: 0;
     bottom: 0;
-    padding-top: 15s%;
+    padding-top: 15%;
     margin: auto;
     text-align: center;
     font-family: Montserrat, serif;
@@ -34,7 +34,6 @@ html,body{
 
 .name{
     font-size: 30px;
-    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -47,7 +46,6 @@ html,body{
 }
 
 .sub{
-    position: relative;
     top: 0;
     left: 0;
     right: 0;
