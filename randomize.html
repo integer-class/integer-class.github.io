@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <title>Integer Class</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        padding-top: 6rem;
+        gap: 4rem;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 2rem;
+        color: #1e293b;
+      }
+
+      .input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .input__title {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.5rem;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+      }
+
+      .input__number {
+        border: none;
+        border-bottom: 0.2rem solid #1e293b;
+        background: none;
+        font-size: 3rem;
+        width: 8rem;
+        text-align: center;
+        outline: none;
+        color: #1e293b;
+        font-family: "Rubik", sans-serif;
+      }
+
+      .input__button {
+        padding: 0.5rem 1rem;
+        border: 0.2rem solid #1e293b;
+        font-weight: 600;
+        background-color: white;
+        cursor: pointer;
+        box-shadow: 0.2rem 0.2rem 0 #1e293b;
+        color: #1e293b;
+        text-decoration: none;
+      }
+
+      .result {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        gap: 1rem;
+        width: 960px;
+        margin: 0 auto;
+        padding-bottom: 4rem;
+      }
+
+      .list {
+        list-style: none;
+      }
+
+      .list__container {
+        border: 0.2rem solid #1e293b;
+        padding: 1rem;
+        background: white;
+        box-shadow: 0.2rem 0.2rem 0 #1e293b;
+        font-family: "Rubik", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">Group Randomizer</h1>
+      <div class="input">
+        <span class="input__title">Number of Members</span>
+        <input class="input__number" type="number" value="2" />
+        <button class="input__button" href="./randomize.html">Randomize</button>
+      </div>
+      <div class="result"></div>
+    </main>
+    <script>
+      const STUDENTS = [
+        "Al-Azhar Rizqi Rifa'i Firdaus",
+        "Ananda Az Haruddin Salima",
+        "Athriya Genferin",
+        "Ayu Jovita Widyadhari",
+        "Azahra Salsabila",
+        "Davis Maulana Hermanto",
+        "Dhio Febrio Athlon",
+        "Dicha Zelianivan Arkana",
+        "Fahruddin Zaim Ibrahim Wicaksono",
+        "Gastiadirijal Naufaldy Kestiyanto",
+        "Hawa Esanda",
+        "Lenka Melinda Florienka",
+        "Malik Abdul Azis",
+        "Maulana Dwi Cahyo",
+        "Maulia Balqis Ansya Aulia",
+        "Mochamad Wildani Azizi",
+        "Muhammad Baihaqi Aulia Asy'ari",
+        "Muhammad Nurfauzi Ikhsan",
+        "Renathan Anggoro Arry Wibisono",
+        "Shafa Rafazanda",
+        "Shofa Yasmin Fauziah",
+        "Shofwah Kanaka Ebsa Anargya",
+        "Sri Kresna Maha Dewa",
+        "Steven Christian Susanto",
+        "Susila Fajar Bahiy 'Aqil",
+        "Virza Aulia Rachman",
+        "Yanuar Thaif Chalil Candra",
+      ];
+
+      const input = document.querySelector(".input__number");
+      const button = document.querySelector(".input__button");
+
+      // groups student into groups of n
+      function groupStudents(n) {
+        const students = [...STUDENTS];
+        const groups = [];
+        while (students.length > 0) {
+          const group = [];
+          for (let i = 0; i < n && students.length > 0; i++) {
+            const index = Math.floor(Math.random() * students.length);
+            const student = students.splice(index, 1)[0];
+            group.push(student);
+          }
+          // If there are leftover students and a previous group exists,
+          // add the leftover students to the previous group.
+          if (group.length < n && groups.length > 0) {
+            const previousGroup = groups[groups.length - 1];
+            previousGroup.push(...group);
+          } else {
+            groups.push(group);
+          }
+        }
+        return groups;
+      }
+
+      function createGroupList(group) {
+        const list = document.createElement("ul");
+        list.classList.add("list");
+        group.forEach((student) => {
+          const item = document.createElement("li");
+          item.classList.add("list__item");
+          item.innerText = student;
+          list.appendChild(item);
+        });
+        return list;
+      }
+
+      // creates a list of groups
+      function createList(groups) {
+        const containers = [];
+        groups.forEach((group, index) => {
+          const container = document.createElement("div");
+          container.classList.add("list__container");
+          const list = createGroupList(group, index);
+          container.appendChild(list);
+          containers.push(container);
+        });
+        return containers;
+      }
+
+      // shuffle into groups and append to DOM
+      function shuffle() {
+        const n = parseInt(input.value);
+        const groups = groupStudents(n);
+        const list = createList(groups);
+        const result = document.querySelector(".result");
+        result.innerHTML = "";
+        list.forEach((list) => result.appendChild(list));
+      }
+
+      button.addEventListener("click", shuffle);
+    </script>
+  </body>
+</html>

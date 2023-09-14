@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./base.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,22 +12,19 @@
     />
     <title>Integer Class</title>
     <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         height: 100%;
       }
 
-      body {
+      .main {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #f4f4f4;
       }
 
       .title {
@@ -34,9 +32,32 @@
         font-size: 2rem;
         color: #1e293b;
       }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .button {
+        padding: 0.5rem 1rem;
+        border: 0.2rem solid #1e293b;
+        font-weight: 600;
+        background-color: white;
+        cursor: pointer;
+        box-shadow: 0.2rem 0.2rem 0 #1e293b;
+        color: #1e293b;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
-    <h1 class="title">Integer Class</h1>
+    <main class="container">
+      <h1 class="title">Integer Class</h1>
+      <div class="buttons">
+        <a class="button" href="./randomize.html">Group Randomizer</a>
+      </div>
+    </main>
   </body>
 </html>
