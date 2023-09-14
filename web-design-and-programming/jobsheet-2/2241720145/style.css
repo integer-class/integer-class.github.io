@@ -1,0 +1,98 @@
+/* Add CSS for the rounded image */
+#author-image {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    background: url('img/Butterfly_Chaos.png') center/cover;
+}
+
+#cv-image {
+    float: left;
+    margin-right: 20px;
+    width: 135px;
+    height: 135px;
+    object-fit: cover;
+    background: url('img/CV_picture.jpg') center/cover;
+}
+
+/* Dark theme styles */
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#header {
+    background-color: #222;
+    padding: 20px;
+}
+
+/* #region Nav bar */
+#nav {
+    text-align: center;
+}
+
+.nav-button {
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #555;
+}
+/* #endregion */
+#main {
+    padding: 20px;
+}
+
+#author-intro {
+    align-items: center;
+}
+
+#author-image {
+    border: 3px solid #fff;
+}
+
+#author-intro h2 {
+    font-size: 24px;
+    margin: 20px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    color: #ffcc00;
+}
+
+.section p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+#footer {
+    background-color: #222;
+    padding: 10px;
+    text-align: center;
+}
